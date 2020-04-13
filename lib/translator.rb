@@ -1,6 +1,5 @@
 # require modules here
 require 'yaml'
-require 'pry'
 
 =begin 
 emoticons # => 
@@ -51,7 +50,7 @@ wink:
 def load_library(emoticons)
   library = YAML.load_file(emoticons)
   #library = { "angel" => [ "O:)", "☜(⌒▽⌒)☞" ],"angry" => [ ">:(", "ヽ(ｏ`皿′ｏ)ﾉ" ]}
-  # TURN INTO    {'happy' => {:english => ":)", :japanese => "(＾ｖ＾)"
+  # TURN INTO {'happy' => {:english => ":)", :japanese => "(＾ｖ＾)"
   new_hash = {}
   library.each do |emoticon_name, emoticon_array|
       new_hash[emoticon_name.to_s] = {english: emoticon_array[0], japanese: emoticon_array[1]}
@@ -62,7 +61,7 @@ end
 def get_japanese_emoticon(file_path, english_emoticon)
   library = load_library(file_path)
     library.each do |english_name, emoticon_hash|
-        if library[english_name.to_s][:english] == english_emoticon.to_s
+        if library[english_name.to_s][:english] == english_emoticon
           return library[english_name.to_s][:japanese]
         end
     end
